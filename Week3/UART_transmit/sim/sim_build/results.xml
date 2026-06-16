@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1781593150" />
+    <testcase name="test_a" classname="test_UART_transmit" file="/Users/daddyboi/Desktop/MIT_6.205/Week3/UART_transmit/sim/test_UART_transmit.py" lineno="13" time="4.999737977981567" sim_time_ns="1410050.001" ratio_time="282024.77954039664" />
+  </testsuite>
+</testsuites>

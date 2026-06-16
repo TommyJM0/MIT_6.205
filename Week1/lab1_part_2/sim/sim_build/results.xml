@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1774180200" />
+    <testcase name="first_test" classname="test_rgb_controller" file="/Users/daddyboi/Desktop/FPGA/Week1/lab1_part_2/sim/test_rgb_controller.py" lineno="19" time="0.498521089553833" sim_time_ns="120020.001" ratio_time="240752.1036019071" />
+  </testsuite>
+</testsuites>

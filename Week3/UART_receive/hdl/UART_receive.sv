@@ -34,7 +34,6 @@ module UART_receive
     logic [32:0] count_next = 0;
     logic [7:0] rx_buffer = 0;
     logic [7:0] rx_buffer_next = 0;
-    logic read_data;
 
     always_comb begin
       if(rst) begin
@@ -42,7 +41,7 @@ module UART_receive
       end
       else begin
         case (state)
-          
+
           IDLE : begin
             if(din == 0) begin
               next = START;
@@ -59,7 +58,6 @@ module UART_receive
 
             dout_valid = 0;
             dout = 0;
-            read_data = 0;
           end
 
           START : begin
@@ -84,60 +82,58 @@ module UART_receive
           end
           
           DATA : begin
-            if(count == BAUD_BIT_PERIOD - 1) begin
+            
+            if((count == BAUD_BIT_PERIOD - 1) && (bit_num != 7)) begin
               count_next = 0;
               bit_num_next = bit_num + 1;
+            end else if ((count == BAUD_BIT_PERIOD - 1) && (bit_num == 7))begin
+              next = STOP;
+              bit_num_next = 0;
+              count_next = 0; 
             end else begin
               count_next = count + 1;
             end 
             
-            if (bit_num != 8) begin
-              
-              next = DATA;
-              if(count == BAUD_BIT_PERIOD / 2) begin
-                rx_buffer_next = {din, rx_buffer[7:1]};
-              end
-              else begin
-                rx_buffer_next =  rx_buffer;
-              end
-
-            end else begin
-              next = STOP;
-              bit_num_next = 0;
-              count_next = 0;
+            if(count == BAUD_BIT_PERIOD / 2) begin
+              rx_buffer_next = {din, rx_buffer[7:1]};
             end
+            else begin
+              rx_buffer_next =  rx_buffer;
+            end
+
             
             dout_valid = 0;
             dout = 0;
           end
         
           STOP: begin
-            if(count  == BAUD_BIT_PERIOD/2 ) begin //checking for a bad start bit
+            if(count  == BAUD_BIT_PERIOD/2 ) begin //checking for a bad stop bit
               if(din == 1) begin
-                next = STOP;
+                next = TRANSMIT;
               end else begin
                 next = IDLE;
               end
             end
             
-            if(count == BAUD_BIT_PERIOD - 1) begin //Keeping the BAUD rate timing right
-              next = TRANSMIT;
-              count_next = 0;
-            end
-            else begin
-              count_next = count + 1;
-            end
-
+            count_next = count + 1;
             dout_valid = 0;
             dout = 0;
           end
 
           TRANSMIT: begin
-            dout_valid = 1;
+            
+            if(count == BAUD_BIT_PERIOD - 1) begin
+              next = IDLE;
+              count_next = 0;
+            end
+            else begin
+              count_next = count + 1;
+            end
+            
             dout = rx_buffer;
-
+            dout_valid = (count == BAUD_BIT_PERIOD/2 + 1);
+          
           end
-
         endcase
       end 
     end   
@@ -147,11 +143,12 @@ module UART_receive
         state <= IDLE;
         count <= 0;
       end
-      else
+      else begin
         state <= next;
         count <= count_next;
         bit_num <= bit_num_next;
         rx_buffer <= rx_buffer_next;
+      end
     end
 
 endmodule // uart_receive

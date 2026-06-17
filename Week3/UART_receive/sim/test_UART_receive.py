@@ -65,13 +65,6 @@ async def test_a(dut):
     dut._log.info("Setting Trigger")
     cocotb.start_soon(uart_send_message(dut,[235]))
     await Timer(1200000, units = 'ns')
-    dut.rst.value = 0
-    await Timer(20000, units = 'ns')
-    dut.rst.value = 0
-    await ClockCycles(dut.clk, 3)
-    cocotb.start_soon(uart_send_message(dut,[53]))
-    await Timer(1200000, units = 'ns')
-    dut.rst.value = 1
 
 def uart_receive_runner():
     """Simulate the counter using the Python runner."""

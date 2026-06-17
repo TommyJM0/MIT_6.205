@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1781510254" />
-    <testcase name="test_a" classname="test_UART_receive" file="/Users/daddyboi/Desktop/MIT_6.205/Week3/UART_receive/sim/test_UART_receive.py" lineno="56" time="9.862357139587402" sim_time_ns="2420070.001" ratio_time="245384.5431419091" />
+    <property name="random_seed" value="1781672327" />
+    <testcase name="test_a" classname="test_UART_receive" file="/Users/daddyboi/Desktop/MIT_6.205/Week3/UART_receive/sim/test_UART_receive.py" lineno="56" time="4.829129934310913" sim_time_ns="1200050.001" ratio_time="248502.32181032412" />
   </testsuite>
 </testsuites>

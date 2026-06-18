@@ -44,7 +44,7 @@ module top_level
     // 8kHz trigger using a week 1 counter!
 
     // TODO: set this parameter to the number of clock cycles between each cycle of an 8kHz trigger
-    localparam CYCLES_PER_TRIGGER = 1; // MUST CHANGE
+    localparam CYCLES_PER_TRIGGER = 12500; // MUST CHANGE
 
     logic [31:0]    trigger_count;
     logic           spi_trigger;
@@ -57,15 +57,15 @@ module top_level
     );
 
     // TODO: use the trigger_count output to make spi_trigger a single-cycle high with 8kHz frequency
-    assign spi_trigger = 0; // MUST CHANGE
+    assign spi_trigger = (trigger_count == 0); // MUST CHANGE
 
     // SPI Controller on our ADC
 
     // TODO: bring in the instantiation of your SPI controller from the end of last week's lab!
     // you updated some parameter values based on the MCP3008's specification, bring those updates here.
     // see: "The Whole Thing", last checkoff from Week 02
-    parameter ADC_DATA_WIDTH = 2; //MUST CHANGE
-    parameter ADC_DATA_CLK_PERIOD = 2; //MUST CHANGE
+    parameter ADC_DATA_WIDTH = 17; //MUST CHANGE
+    parameter ADC_DATA_CLK_PERIOD = 50; //MUST CHANGE
 
     // SPI interface controls
     logic [ADC_DATA_WIDTH-1:0] spi_write_data;
@@ -75,7 +75,7 @@ module top_level
 
     // Since now we're only ever reading from one channel, spi_write_data can stay constant.
     // TODO: Assign it a proper value for accessing CH7!
-    assign spi_write_data = 0; // MUST CHANGE
+    assign spi_write_data = 17'b01111_0000_0000_0000; // MUST CHANGE
 
     //built last week:
     spi_con
@@ -97,6 +97,13 @@ module top_level
     logic [7:0]                audio_sample;
 
     // TODO: store your audio sample from the SPI controller, only when the data is valid!
+    
+    always_ff @(posedge clk_100mhz ) begin
+        if(spi_read_data_valid) begin
+            audio_sample <= spi_read_data;
+        end
+    end
+
 
     // Line out Audio
     logic [7:0]                line_out_audio;
@@ -105,8 +112,17 @@ module top_level
     // also, make the value much much smaller so that we don't kill our ears :)
     assign line_out_audio = audio_sample >> 3;
     logic                      spk_out;
+    
     // TODO: instantiate a pwm module to drive spk_out based on the
     // set both output channels equal to the same PWM signal!
+
+    pwm audio(
+        .clk(clk_100mhz),
+        .rst(rst),
+        .dc_in(line_out_audio),
+        .sig_out(spk_out)
+    );
+
     assign spkl = spk_out;
     assign spkr = spk_out;
 

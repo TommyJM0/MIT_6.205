@@ -90,10 +90,10 @@ set_property -dict {PACKAGE_PIN E5  IOSTANDARD LVCMOS33} [ get_ports "ss1_c[6]"]
 
 # PMOD A Signals
 
-#set_property -dict {PACKAGE_PIN F14 IOSTANDARD LVCMOS33}  [ get_ports "pmoda[0]" ]
-#set_property -dict {PACKAGE_PIN F15 IOSTANDARD LVCMOS33}  [ get_ports "pmoda[1]" ]
-#set_property -dict {PACKAGE_PIN H13 IOSTANDARD LVCMOS33}  [ get_ports "pmoda[2]" ]
-#set_property -dict {PACKAGE_PIN H14 IOSTANDARD LVCMOS33}  [ get_ports "pmoda[3]" ]
+set_property -dict {PACKAGE_PIN F14 IOSTANDARD LVCMOS33}  [ get_ports "cs" ]
+set_property -dict {PACKAGE_PIN F15 IOSTANDARD LVCMOS33}  [ get_ports "copi" ]
+set_property -dict {PACKAGE_PIN H13 IOSTANDARD LVCMOS33}  [ get_ports "cipo" ]
+set_property -dict {PACKAGE_PIN H14 IOSTANDARD LVCMOS33}  [ get_ports "dclk" ]
 #set_property -dict {PACKAGE_PIN J13 IOSTANDARD LVCMOS33}  [ get_ports "pmoda[4]" ]
 #set_property -dict {PACKAGE_PIN J14 IOSTANDARD LVCMOS33}  [ get_ports "pmoda[5]" ]
 #set_property -dict {PACKAGE_PIN E14 IOSTANDARD LVCMOS33}  [ get_ports "pmoda[6]" ]
@@ -101,12 +101,12 @@ set_property -dict {PACKAGE_PIN E5  IOSTANDARD LVCMOS33} [ get_ports "ss1_c[6]"]
 
 # PMOD B Signals
 ##fixed K14 and J15 which were a copy-paste and wrong.
-#set_property -dict {PACKAGE_PIN H18 IOSTANDARD LVCMOS33}  [ get_ports "pmodb[0]" ]
-#set_property -dict {PACKAGE_PIN G18 IOSTANDARD LVCMOS33}  [ get_ports "pmodb[1]" ]
-#set_property -dict {PACKAGE_PIN K14 IOSTANDARD LVCMOS33}  [ get_ports "pmodb[2]" ]
-#set_property -dict {PACKAGE_PIN J15 IOSTANDARD LVCMOS33}  [ get_ports "pmodb[3]" ]
-#set_property -dict {PACKAGE_PIN H16 IOSTANDARD LVCMOS33}  [ get_ports "pmodb[4]" ]
-#set_property -dict {PACKAGE_PIN H17 IOSTANDARD LVCMOS33}  [ get_ports "pmodb[5]" ]
+set_property -dict {PACKAGE_PIN H18 IOSTANDARD LVCMOS33}  [ get_ports "debug_copi" ]
+set_property -dict {PACKAGE_PIN G18 IOSTANDARD LVCMOS33}  [ get_ports "debug_cipo" ]
+set_property -dict {PACKAGE_PIN K14 IOSTANDARD LVCMOS33}  [ get_ports "debg_dclk" ]
+set_property -dict {PACKAGE_PIN J15 IOSTANDARD LVCMOS33}  [ get_ports "debug_cs" ]
+set_property -dict {PACKAGE_PIN H16 IOSTANDARD LVCMOS33}  [ get_ports "debug_uart_rxd" ]
+set_property -dict {PACKAGE_PIN H17 IOSTANDARD LVCMOS33}  [ get_ports "debug_uart_txd" ]
 #set_property -dict {PACKAGE_PIN K16 IOSTANDARD LVCMOS33}  [ get_ports "pmodb[6]" ]
 #set_property -dict {PACKAGE_PIN J16 IOSTANDARD LVCMOS33}  [ get_ports "pmodb[7]" ]
 
@@ -132,9 +132,9 @@ set_property -dict {PACKAGE_PIN E5  IOSTANDARD LVCMOS33} [ get_ports "ss1_c[6]"]
 
 # PWM audio out signals
 #change G15 to B13 and E13 to B14
-#set_property PACKAGE_PIN B13 [ get_ports "spkl"]
-#set_property PACKAGE_PIN B14 [ get_ports "spkr"]
-#set_property IOSTANDARD LVCMOS33 [ get_ports "spk*"]
+set_property PACKAGE_PIN B13 [ get_ports "spkl"]
+set_property PACKAGE_PIN B14 [ get_ports "spkr"]
+set_property IOSTANDARD LVCMOS33 [ get_ports "spk*"]
 
 # PWM Microphone signals
 #set_property -dict {PACKAGE_PIN E12 IOSTANDARD LVCMOS33} [get_ports {mic_clk}]
@@ -145,8 +145,8 @@ set_property -dict {PACKAGE_PIN E5  IOSTANDARD LVCMOS33} [ get_ports "ss1_c[6]"]
 # UART over micro-USB signals
 # labeled from the perspective of the FPGA!
 # note the inversion from RealDigital official documentation.
-#set_property -dict {PACKAGE_PIN B16 IOSTANDARD LVCMOS33} [get_ports {uart_rxd}]
-#set_property -dict {PACKAGE_PIN A16 IOSTANDARD LVCMOS33} [get_ports {uart_txd}]
+set_property -dict {PACKAGE_PIN B16 IOSTANDARD LVCMOS33} [get_ports {uart_rxd}]
+set_property -dict {PACKAGE_PIN A16 IOSTANDARD LVCMOS33} [get_ports {uart_txd}]
 
 
 ############## NET - IOSTANDARD ##################

@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1781684700" />
+    <testcase name="test_a" classname="test_spi_con" file="/Users/daddyboi/Desktop/MIT_6.205/Week3/SPI_con/sim/test_spi_con.py" lineno="48" time="0.02359318733215332" sim_time_ns="4660.001" ratio_time="197514.6865234799" />
+  </testsuite>
+</testsuites>

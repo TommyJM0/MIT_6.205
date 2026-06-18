@@ -131,9 +131,10 @@ module UART_receive
             end
             
             dout = rx_buffer;
-            dout_valid = (count == BAUD_BIT_PERIOD/2 + 1);
+            dout_valid = (count == BAUD_BIT_PERIOD/2 + 1)
           
           end
+
         endcase
       end 
     end   

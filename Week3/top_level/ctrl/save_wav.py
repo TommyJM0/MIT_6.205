@@ -1,3 +1,10 @@
+# /// script
+# dependencies = [
+#   "pyserial"
+# ]
+# ///
+
+
 import serial
 import wave
 
@@ -8,14 +15,14 @@ import wave
 # find the port name using test_ports.py
 # CHANGE ME
 SERIAL_PORT_NAME = "/dev/ttyUSB1"
-BAUD_RATE = 9600
+BAUD_RATE = 115200
 
 ser = serial.Serial(SERIAL_PORT_NAME,BAUD_RATE)
 print("Serial port initialized")
 
 print("Recording 6 seconds of audio:")
 ypoints = []
-for i in range(8000*6):
+for i in range(8000*15):
     val = int.from_bytes(ser.read(),'little')
     if ((i+1)%8000==0):
         print(f"{(i+1)/8000} seconds complete")

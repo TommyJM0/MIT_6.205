@@ -1,0 +1,43 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
+| Date         : Fri Jun 19 14:02:20 2026
+| Host         : debian12machine running 64-bit Debian GNU/Linux 12 (bookworm)
+| Command      : report_timing -file obj/post_place_timing.rpt
+| Design       : top_level
+| Device       : 7s50-csga324
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+| Design State : Physopt postPlace
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack:                    inf
+  Source:                 my_spi_con/count_reg[28]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            debug_dclk
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        8.984ns  (logic 4.707ns (52.395%)  route 4.277ns (47.605%))
+  Logic Levels:           5  (FDRE=1 LUT4=1 LUT5=1 LUT6=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y63          FDRE                         0.000     0.000 r  my_spi_con/count_reg[28]/C
+    SLICE_X0Y63          FDRE (Prop_fdre_C_Q)         0.419     0.419 r  my_spi_con/count_reg[28]/Q
+                         net (fo=3, estimated)        0.876     1.295    my_spi_con/count_reg_n_0_[28]
+    SLICE_X0Y63          LUT4 (Prop_lut4_I0_O)        0.322     1.617 r  my_spi_con/dclk_OBUF_inst_i_5/O
+                         net (fo=1, estimated)        0.616     2.233    my_spi_con/dclk_OBUF_inst_i_5_n_0
+    SLICE_X0Y60          LUT5 (Prop_lut5_I3_O)        0.332     2.565 r  my_spi_con/dclk_OBUF_inst_i_2/O
+                         net (fo=2, estimated)        0.954     3.519    my_spi_con/dclk_OBUF_inst_i_2_n_0
+    SLICE_X0Y58          LUT6 (Prop_lut6_I1_O)        0.124     3.643 r  my_spi_con/dclk_OBUF_inst_i_1/O
+                         net (fo=2, estimated)        1.831     5.474    debug_dclk_OBUF
+    K14                  OBUF (Prop_obuf_I_O)         3.510     8.984 r  debug_dclk_OBUF_inst/O
+                         net (fo=0)                   0.000     8.984    debug_dclk
+    K14                                                               r  debug_dclk (OUT)
+  -------------------------------------------------------------------    -------------------
+
+
+
+

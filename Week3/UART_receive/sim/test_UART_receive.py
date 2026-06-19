@@ -1,3 +1,10 @@
+#!/usr/bin/env -S uv run
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#   "cocotb>=2.0",
+# ]
+# ///
 
 import cocotb
 import os
@@ -6,11 +13,13 @@ import sys
 from math import log
 import logging
 from pathlib import Path
+
 from cocotb.clock import Clock
-from cocotb.triggers import Timer, ClockCycles, RisingEdge, FallingEdge, ReadOnly,with_timeout
+from cocotb.triggers import Timer, ClockCycles, RisingEdge, FallingEdge, ReadOnly, with_timeout
 from cocotb.utils import get_sim_time as gst
-from cocotb.runner import get_runner
-test_file = os.path.basename(__file__).replace(".py","")
+from cocotb_tools.runner import get_runner
+
+test_file = os.path.basename(__file__).replace(".py", "")
 
 import cocotb
 from cocotb.triggers import ClockCycles, RisingEdge

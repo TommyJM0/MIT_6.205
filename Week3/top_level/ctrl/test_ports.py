@@ -1,3 +1,13 @@
+# /// script
+# dependencies = [
+#   "serial",
+#   "pyserial"
+# ]
+# ///
+
+
+
+
 import serial.tools.list_ports
 import time
 BAUD_RATE = 57600

@@ -29,7 +29,12 @@ module top_level
 
     //have btnd control system reset
     logic   sys_rst;
-    assign sys_rst = btn[0];
+    logic sys_rst_sync_0;
+
+    always_ff @(posedge clk_100mhz) begin
+        sys_rst_sync_0 <= btn[0];
+        sys_rst        <= sys_rst_sync_0;
+    end
 
     //debug connections:
     assign debug_copi       = copi;
@@ -75,7 +80,7 @@ module top_level
 
     // Since now we're only ever reading from one channel, spi_write_data can stay constant.
     // TODO: Assign it a proper value for accessing CH7!
-    assign spi_write_data = 17'b01111_0000_0000_0000; // MUST CHANGE
+    assign spi_write_data = 17'b11111_0000_0000_0000; // MUST CHANGE
 
     //built last week:
     spi_con
@@ -100,7 +105,7 @@ module top_level
     
     always_ff @(posedge clk_100mhz ) begin
         if(spi_read_data_valid) begin
-            audio_sample <= spi_read_data;
+            audio_sample <= spi_read_data[9:2];
         end
     end
 
@@ -110,15 +115,15 @@ module top_level
 
     // for checkoff 1: pass-through the audio sample we captured from SPI!
     // also, make the value much much smaller so that we don't kill our ears :)
-    assign line_out_audio = audio_sample >> 3;
+    assign line_out_audio = audio_sample >> 1;
     logic                      spk_out;
     
     // TODO: instantiate a pwm module to drive spk_out based on the
     // set both output channels equal to the same PWM signal!
-
+sys_rst        <= sys_rst_sync_0;
     pwm audio(
         .clk(clk_100mhz),
-        .rst(rst),
+        .rst(sys_rst),
         .dc_in(line_out_audio),
         .sig_out(spk_out)
     );
@@ -132,25 +137,53 @@ module top_level
     //  and to set the uart_transmit inputs appropriately.
     //  **be sure to only ever set uart_data_valid high if sw[0] is on,
     //  so we only send data on UART when we're trying to receive it!
+
+
     logic                      audio_sample_waiting;
     logic [7:0]                uart_data_in;
     logic                      uart_data_valid;
     logic                      uart_busy;
-    // UART Transmitter to FTDI2232
+    
+    //UART Transmitter to FTDI2232
     // TODO: instantiate the UART transmitter you just wrote, using the input signals from above.
 
 
+    logic valid_data_valid;
+    assign uart_data_valid = (spi_read_data_valid && sw[0]);
+
+    always_ff @(posedge clk_100mhz) begin
+        if (sys_rst) begin
+            audio_sample_waiting <= 1'b0;
+            uart_data_in         <= 8'h00;
+        end else begin
+            // Set flag when new SPI data arrives and switch 0 is active
+            if (spi_read_data_valid && sw[0]) begin
+                audio_sample_waiting <= 1'b1;
+                uart_data_in         <= spi_read_data[9:2]; // Lock in sample immediately
+            end
+            // Clear flag only when the transmitter has successfully started processing it
+            else if (audio_sample_waiting && ~uart_busy) begin
+                audio_sample_waiting <= 1'b0;
+            end
+        end
+    end
+
+
+    UART_transmit #(
+        .INPUT_CLOCK_FREQ(100_000_000),
+        .BAUD_RATE(115200)
+    )uart_tx
+    (
+        .clk(clk_100mhz),
+        .rst(sys_rst),
+        .din(uart_data_in),
+        .trigger(spi_trigger),
+        .busy(uart_busy),
+        .dout(uart_txd)
+    );
 
     
-    
-    
-    
-    
-    
-    
-    
     // Checkoff 2: leave this stuff commented until you reach the second checkoff page!
-    /*
 
     // Synchronizer (Lecture 5)
     // TODO: pass your uart_rx data through a couple buffer synchronization flip-flops,
@@ -158,9 +191,31 @@ module top_level
     // uart_rxd should drive uart_rx_buf0 should drive uart_rx_buf1, all sequentially
     logic                      uart_rx_buf0, uart_rx_buf1;
 
+    always_ff @(posedge clk_100mhz) begin
+        uart_rx_buf0 <= uart_rxd;
+        uart_rx_buf1 <= uart_rx_buf0;
+
+    end    
+    
     // UART Receiver
     // TODO: instantiate your uart_receive module, connected up to the synchronized uart_rx signal
     // declare any signals you need to keep track of!
+
+    logic uart_rx_valid;
+    logic [7:0] uart_rx_data;
+
+    UART_receive #(
+        .INPUT_CLOCK_FREQ(100_000_000)
+        .BAUD_RATE(115200)
+    )uart_rx
+    (
+        .clk(clk_100mhz),
+        .rst(sys_rst),
+        .din(uart_rx_buf1),
+        .dout_valid(uart_rx_valid),
+        .dout(uart_rx_data)
+    )
+    
 
     // BRAM Memory
     // We've configured this for you, but you'll need to hook up your address and data ports to the rest of your logic!
@@ -206,11 +261,23 @@ module top_level
     // TODO: instantiate an event counter that increments once every 8000th of a second
     // for addressing the (port A) data we want to send out to LINE OUT!
 
+
+
     // TODO: instantiate another event counter that increments with each new UART data byte
     // for addressing the (port B) place to send our UART_RX data!
     // reminder TODO: go up to your PWM module, wire up the speaker to play the data from port A dout.
 
-    */
+    evt_counter #(
+        .MAX_COUNT(BRAM_DEPTH)
+    )
+    evt_counter
+    (
+        .clk(clk_100mhz),
+        .rst(sys_rst),
+        .evt(uart_rx_valid),
+        .count(addrb)
+    );
+
 endmodule // top_level
 
 `default_nettype wire

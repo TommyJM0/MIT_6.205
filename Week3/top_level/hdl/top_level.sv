@@ -228,9 +228,12 @@ sys_rst        <= sys_rst_sync_0;
     logic [BRAM_WIDTH-1:0]     douta;
     logic [ADDR_WIDTH-1:0]     addra;
 
+
     // only using port b for writes: we only use din
     logic [BRAM_WIDTH-1:0]     dinb;
     logic [ADDR_WIDTH-1:0]     addrb;
+
+    
 
     xilinx_true_dual_port_read_first_2_clock_ram
     #(  .RAM_WIDTH(BRAM_WIDTH),
@@ -261,7 +264,16 @@ sys_rst        <= sys_rst_sync_0;
     // TODO: instantiate an event counter that increments once every 8000th of a second
     // for addressing the (port A) data we want to send out to LINE OUT!
 
-
+    evt_counter #(
+        .MAX_COUNT(BRAM_DEPTH)
+    )
+    evt_counterA
+    (
+        .clk(clk_100mhz),
+        .rst(sys_rst),
+        .evt(spi_trigger),
+        .count(addra)
+    );
 
     // TODO: instantiate another event counter that increments with each new UART data byte
     // for addressing the (port B) place to send our UART_RX data!
@@ -270,7 +282,7 @@ sys_rst        <= sys_rst_sync_0;
     evt_counter #(
         .MAX_COUNT(BRAM_DEPTH)
     )
-    evt_counter
+    evt_counterB
     (
         .clk(clk_100mhz),
         .rst(sys_rst),

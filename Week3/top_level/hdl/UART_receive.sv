@@ -26,7 +26,7 @@ module UART_receive
     } uart_state;
 
 
-    uart_state [3:0] state, next;
+    uart_state state, next;
     
     logic [4:0] bit_num = 0;
     logic [4:0] bit_num_next = 0;
@@ -47,13 +47,13 @@ module UART_receive
               next = START;
               bit_num_next = 0;
               count_next = 0;
-              rx_buffer = 0;
+              rx_buffer_next = 0;
 
             end else begin
               next = state;
               bit_num_next = 0;
               count_next = 0;
-              rx_buffer = 0;
+              rx_buffer_next = 0;
             end
 
             dout_valid = 0;
@@ -114,10 +114,11 @@ module UART_receive
                 next = IDLE;
               end
             end
-            
-            count_next = count + 1;
-            dout_valid = 0;
-            dout = 0;
+            else begin
+              count_next = count + 1;
+              dout_valid = (count == BAUD_BIT_PERIOD/2 - 1);
+              dout = 0;
+            end
           end
 
           TRANSMIT: begin
@@ -131,8 +132,8 @@ module UART_receive
             end
             
             dout = rx_buffer;
-            dout_valid = (count == BAUD_BIT_PERIOD/2 + 1);
-          
+            dout_valid = 0;
+
           end
 
         endcase

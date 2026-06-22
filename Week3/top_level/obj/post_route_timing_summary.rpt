@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-| Date         : Fri Jun 19 14:02:36 2026
+| Date         : Sat Jun 20 19:01:38 2026
 | Host         : debian12machine running 64-bit Debian GNU/Linux 12 (bookworm)
 | Command      : report_timing_summary -file obj/post_route_timing_summary.rpt
 | Design       : top_level
@@ -49,12 +49,12 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (775)
+1. checking no_clock (2769)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (576)
-5. checking no_input_delay (3)
-6. checking no_output_delay (10)
+4. checking unconstrained_internal_endpoints (1389)
+5. checking no_input_delay (4)
+6. checking no_output_delay (26)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
 9. checking loops (0)
@@ -62,9 +62,9 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (775)
---------------------------
- There are 234 register/latch pins with no clock driven by root clock pin: clk_100mhz (HIGH)
+1. checking no_clock (2769)
+---------------------------
+ There are 342 register/latch pins with no clock driven by root clock pin: clk_100mhz (HIGH)
 
  There are 2 register/latch pins with no clock driven by root clock pin: counter_8khz_trigger/count_reg[0]/Q (HIGH)
 
@@ -130,7 +130,89 @@ Table of Contents
 
  There are 2 register/latch pins with no clock driven by root clock pin: counter_8khz_trigger/count_reg[9]/Q (HIGH)
 
- There are 49 register/latch pins with no clock driven by root clock pin: sys_rst_reg/Q (HIGH)
+ There are 104 register/latch pins with no clock driven by root clock pin: sys_rst_reg/Q (HIGH)
+
+ There are 58 register/latch pins with no clock driven by root clock pin: uart_rx/FSM_sequential_state_reg[0]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/FSM_sequential_state_reg[1]/Q (HIGH)
+
+ There are 58 register/latch pins with no clock driven by root clock pin: uart_rx/FSM_sequential_state_reg[2]/Q (HIGH)
+
+ There are 3 register/latch pins with no clock driven by root clock pin: uart_rx/bit_num_reg[0]/Q (HIGH)
+
+ There are 3 register/latch pins with no clock driven by root clock pin: uart_rx/bit_num_reg[1]/Q (HIGH)
+
+ There are 3 register/latch pins with no clock driven by root clock pin: uart_rx/bit_num_reg[2]/Q (HIGH)
+
+ There are 3 register/latch pins with no clock driven by root clock pin: uart_rx/bit_num_reg[3]/Q (HIGH)
+
+ There are 3 register/latch pins with no clock driven by root clock pin: uart_rx/bit_num_reg[4]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[0]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[10]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[11]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[12]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[13]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[14]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[15]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[16]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[17]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[18]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[19]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[1]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[20]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[21]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[22]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[23]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[24]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[25]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[26]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[27]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[28]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[29]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[2]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[30]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[31]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[32]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[3]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[4]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[5]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[6]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[7]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[8]/Q (HIGH)
+
+ There are 50 register/latch pins with no clock driven by root clock pin: uart_rx/count_reg[9]/Q (HIGH)
 
  There are 18 register/latch pins with no clock driven by root clock pin: uart_tx/FSM_sequential_state_reg[0]/Q (HIGH)
 
@@ -227,23 +309,23 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (576)
---------------------------------------------------
- There are 576 pins that are not constrained for maximum delay. (HIGH)
+4. checking unconstrained_internal_endpoints (1389)
+---------------------------------------------------
+ There are 1389 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (3)
+5. checking no_input_delay (4)
 ------------------------------
- There are 3 input ports with no input delay specified. (HIGH)
+ There are 4 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
-6. checking no_output_delay (10)
+6. checking no_output_delay (26)
 --------------------------------
- There are 10 ports with no output delay specified. (HIGH)
+ There are 26 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 

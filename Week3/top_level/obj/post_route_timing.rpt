@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-| Date         : Fri Jun 19 14:02:36 2026
+| Date         : Sat Jun 20 19:01:38 2026
 | Host         : debian12machine running 64-bit Debian GNU/Linux 12 (bookworm)
 | Command      : report_timing -file obj/post_route_timing.rpt
 | Design       : top_level
@@ -13,36 +13,40 @@ Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanc
 Timing Report
 
 Slack:                    inf
-  Source:                 audio/mc/count_reg[0]/C
-                            (rising edge-triggered cell FDRE)
+  Source:                 audio_bram/BRAM_reg_0_7/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1)
   Destination:            spkr
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        9.768ns  (logic 5.065ns (51.849%)  route 4.704ns (48.151%))
-  Logic Levels:           7  (CARRY4=4 FDRE=1 LUT4=1 OBUF=1)
+  Data Path Delay:        11.183ns  (logic 5.853ns (52.338%)  route 5.330ns (47.662%))
+  Logic Levels:           8  (CARRY4=4 LUT4=1 OBUF=1 RAMB36E1=2)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X6Y53          FDRE                         0.000     0.000 r  audio/mc/count_reg[0]/C
-    SLICE_X6Y53          FDRE (Prop_fdre_C_Q)         0.518     0.518 r  audio/mc/count_reg[0]/Q
-                         net (fo=4, routed)           1.172     1.690    audio/mc/count_reg[0]
-    SLICE_X4Y55          LUT4 (Prop_lut4_I2_O)        0.124     1.814 r  audio/mc/sig_out_carry_i_8/O
-                         net (fo=1, routed)           0.000     1.814    audio/mc_n_15
-    SLICE_X4Y55          CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.532     2.346 r  audio/sig_out_carry/CO[3]
-                         net (fo=1, routed)           0.000     2.346    audio/sig_out_carry_n_0
-    SLICE_X4Y56          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     2.460 r  audio/sig_out_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     2.460    audio/sig_out_carry__0_n_0
-    SLICE_X4Y57          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     2.574 r  audio/sig_out_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     2.574    audio/sig_out_carry__1_n_0
-    SLICE_X4Y58          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     2.688 r  audio/sig_out_carry__2/CO[3]
-                         net (fo=2, routed)           3.532     6.220    spkr_OBUF
-    B14                  OBUF (Prop_obuf_I_O)         3.549     9.768 r  spkr_OBUF_inst/O
-                         net (fo=0)                   0.000     9.768    spkr
+    RAMB36_X1Y15         RAMB36E1                     0.000     0.000 r  audio_bram/BRAM_reg_0_7/CLKBWRCLK
+    RAMB36_X1Y15         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_CASCADEOUTB)
+                                                      1.028     1.028 r  audio_bram/BRAM_reg_0_7/CASCADEOUTB
+                         net (fo=1, routed)           0.065     1.093    audio_bram/BRAM_reg_0_7_n_1
+    RAMB36_X1Y16         RAMB36E1 (Prop_ramb36e1_CASCADEINB_DOBDO[0])
+                                                      0.425     1.518 r  audio_bram/BRAM_reg_1_7/DOBDO[0]
+                         net (fo=2, routed)           1.886     3.404    audio_bram/ram_data_a[7]
+    SLICE_X8Y69          LUT4 (Prop_lut4_I0_O)        0.124     3.528 r  audio_bram/sig_out_carry_i_5/O
+                         net (fo=1, routed)           0.000     3.528    audio/S[3]
+    SLICE_X8Y69          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376     3.904 r  audio/sig_out_carry/CO[3]
+                         net (fo=1, routed)           0.000     3.904    audio/sig_out_carry_n_0
+    SLICE_X8Y70          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.021 r  audio/sig_out_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     4.021    audio/sig_out_carry__0_n_0
+    SLICE_X8Y71          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.138 r  audio/sig_out_carry__1/CO[3]
+                         net (fo=1, routed)           0.000     4.138    audio/sig_out_carry__1_n_0
+    SLICE_X8Y72          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     4.255 r  audio/sig_out_carry__2/CO[3]
+                         net (fo=2, routed)           3.379     7.634    spkr_OBUF
+    B14                  OBUF (Prop_obuf_I_O)         3.549    11.183 r  spkr_OBUF_inst/O
+                         net (fo=0)                   0.000    11.183    spkr
     B14                                                               r  spkr (OUT)
   -------------------------------------------------------------------    -------------------
 

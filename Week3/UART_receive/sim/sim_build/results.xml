@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1781925808" />
-    <testcase name="test_a" classname="test_UART_receive" file="/Users/daddyboi/Desktop/MIT_6.205/Week3/UART_receive/sim/test_UART_receive.py" lineno="65" time="9.37632417678833" sim_time_ns="2400050.0" ratio_time="255969.1788325186" />
+    <property name="random_seed" value="1781953547" />
+    <testcase name="test_a" classname="test_UART_receive" file="/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/UART_receive/sim/test_UART_receive.py" lineno="65" time="14.089734077453613" sim_time_ns="2400050.0" ratio_time="170340.33338078106" />
   </testsuite>
 </testsuites>

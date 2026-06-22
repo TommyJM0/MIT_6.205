@@ -1,6 +1,16 @@
+#!/usr/bin/env -S uv run
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#   "pyserial",
+# ]
+# ///
+
 import wave
 import serial
 import sys
+
+
 
 # Communication Parameters
 SERIAL_PORTNAME = "/dev/ttyUSB1" # CHANGE ME to match your system's serial port name!

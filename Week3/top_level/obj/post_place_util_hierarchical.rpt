@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-| Date         : Fri Jun 19 14:02:20 2026
+| Date         : Sat Jun 20 19:01:22 2026
 | Host         : debian12machine running 64-bit Debian GNU/Linux 12 (bookworm)
 | Command      : report_utilization -file obj/post_place_util_hierarchical.rpt -hierarchical -hierarchical_depth 4 -hierarchical_min_primitive_count 0
 | Design       : top_level
@@ -19,18 +19,22 @@ Table of Contents
 1. Utilization by Hierarchy
 ---------------------------
 
-+------------------------+---------------+------------+------------+---------+------+-----+--------+--------+------------+
-|        Instance        |     Module    | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP Blocks |
-+------------------------+---------------+------------+------------+---------+------+-----+--------+--------+------------+
-| top_level              |         (top) |        169 |        169 |       0 |    0 | 285 |      0 |      0 |          0 |
-|   (top_level)          |         (top) |          0 |          0 |       0 |    0 |  17 |      0 |      0 |          0 |
-|   audio                |           pwm |         29 |         29 |       0 |    0 |  32 |      0 |      0 |          0 |
-|     (audio)            |           pwm |          0 |          0 |       0 |    0 |   0 |      0 |      0 |          0 |
-|     mc                 |     counter_0 |         29 |         29 |       0 |    0 |  32 |      0 |      0 |          0 |
-|   counter_8khz_trigger |       counter |         23 |         23 |       0 |    0 |  32 |      0 |      0 |          0 |
-|   my_spi_con           |       spi_con |         55 |         55 |       0 |    0 | 103 |      0 |      0 |          0 |
-|   uart_tx              | UART_transmit |         62 |         62 |       0 |    0 | 101 |      0 |      0 |          0 |
-+------------------------+---------------+------------+------------+---------+------+-----+--------+--------+------------+
++------------------------+----------------------------------------------+------------+------------+---------+------+-----+--------+--------+------------+
+|        Instance        |                    Module                    | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP Blocks |
++------------------------+----------------------------------------------+------------+------------+---------+------+-----+--------+--------+------------+
+| top_level              |                                        (top) |        263 |        263 |       0 |    0 | 419 |     16 |      0 |          0 |
+|   (top_level)          |                                        (top) |          0 |          0 |       0 |    0 |  12 |      0 |      0 |          0 |
+|   audio                |                                          pwm |         29 |         29 |       0 |    0 |  32 |      0 |      0 |          0 |
+|     (audio)            |                                          pwm |          0 |          0 |       0 |    0 |   0 |      0 |      0 |          0 |
+|     mc                 |                                    counter_1 |         29 |         29 |       0 |    0 |  32 |      0 |      0 |          0 |
+|   audio_bram           | xilinx_true_dual_port_read_first_2_clock_ram |         12 |         12 |       0 |    0 |   0 |     16 |      0 |          0 |
+|   counter_8khz_trigger |                                      counter |         23 |         23 |       0 |    0 |  32 |      0 |      0 |          0 |
+|   evt_counterA         |                                  evt_counter |          1 |          1 |       0 |    0 |  16 |      0 |      0 |          0 |
+|   evt_counterB         |                                evt_counter_0 |          1 |          1 |       0 |    0 |  16 |      0 |      0 |          0 |
+|   my_spi_con           |                                      spi_con |         51 |         51 |       0 |    0 | 103 |      0 |      0 |          0 |
+|   uart_rx              |                                 UART_receive |         96 |         96 |       0 |    0 | 107 |      0 |      0 |          0 |
+|   uart_tx              |                                UART_transmit |         54 |         54 |       0 |    0 | 101 |      0 |      0 |          0 |
++------------------------+----------------------------------------------+------------+------------+---------+------+-----+--------+--------+------------+
 * Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
 
 

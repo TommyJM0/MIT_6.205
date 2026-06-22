@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-| Date         : Fri Jun 19 14:02:14 2026
+| Date         : Sat Jun 20 19:01:11 2026
 | Host         : debian12machine running 64-bit Debian GNU/Linux 12 (bookworm)
 | Command      : report_timing -file obj/post_synth_timing.rpt
 | Design       : top_level
@@ -19,7 +19,7 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.397ns  (logic 5.021ns (59.796%)  route 3.376ns (40.204%))
+  Data Path Delay:        8.408ns  (logic 5.021ns (59.718%)  route 3.387ns (40.282%))
   Logic Levels:           2  (IBUF=1 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -27,9 +27,9 @@ Slack:                    inf
     B16                                               0.000     0.000 r  uart_rxd (IN)
                          net (fo=0)                   0.000     0.000    uart_rxd
     B16                  IBUF (Prop_ibuf_I_O)         1.494     1.494 r  uart_rxd_IBUF_inst/O
-                         net (fo=1, estimated)        3.376     4.870    debug_uart_rxd_OBUF
-    H16                  OBUF (Prop_obuf_I_O)         3.528     8.397 r  debug_uart_rxd_OBUF_inst/O
-                         net (fo=0)                   0.000     8.397    debug_uart_rxd
+                         net (fo=2, estimated)        3.387     4.881    debug_uart_rxd_OBUF
+    H16                  OBUF (Prop_obuf_I_O)         3.528     8.408 r  debug_uart_rxd_OBUF_inst/O
+                         net (fo=0)                   0.000     8.408    debug_uart_rxd
     H16                                                               r  debug_uart_rxd (OUT)
   -------------------------------------------------------------------    -------------------
 

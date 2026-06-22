@@ -3,8 +3,8 @@
 # SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Fri Jun 19 13:13:58 2026
-# Process ID         : 66519
+# Start of session at: Sat Jun 20 18:07:09 2026
+# Process ID         : 24667
 # Current directory  : /home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level
 # Command line       : vivado -mode batch -source build.tcl
 # Log file           : /home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/vivado.log
@@ -13,13 +13,13 @@
 # Platform           : Debian
 # Operating System   : Debian GNU/Linux 12 (bookworm)
 # Processor Detail   : AMD Ryzen 5 2600 Six-Core Processor
-# CPU Frequency      : 1556.452 MHz
+# CPU Frequency      : 1521.625 MHz
 # CPU Physical cores : 6
 # CPU Logical cores  : 12
 # Host memory        : 16709 MB
 # Swap memory        : 32000 MB
 # Total Virtual      : 48709 MB
-# Available Virtual  : 39945 MB
+# Available Virtual  : 42885 MB
 #-----------------------------------------------------------
 source build.tcl
 # set_param general.maxThreads 4
@@ -69,20 +69,39 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7s50'
 INFO: [Device 21-403] Loading part xc7s50csga324-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 66548
+INFO: [Synth 8-7075] Helper process launched with PID 24697
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2090.062 ; gain = 438.742 ; free physical = 943 ; free virtual = 36936
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2089.613 ; gain = 437.742 ; free physical = 4832 ; free virtual = 39748
 ---------------------------------------------------------------------------------
-ERROR: [Synth 8-36] 'busy' is not declared [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/top_level.sv:153]
-INFO: [Synth 8-10285] module 'top_level' is ignored due to previous errors [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/top_level.sv:246]
-INFO: [Synth 8-9084] Verilog file '/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/top_level.sv' ignored due to errors
-ERROR: [Synth 8-12188] Failed to read verilog '/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/top_level.sv'
+INFO: [Synth 8-6157] synthesizing module 'top_level' [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/top_level.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'counter' [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/counter.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'counter' (0#1) [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/counter.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'spi_con' [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/spi_con.sv:4]
+	Parameter DATA_WIDTH bound to: 17 - type: integer 
+	Parameter DATA_CLK_PERIOD bound to: 50 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'spi_con' (0#1) [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/spi_con.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'UART_transmit' [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/UART_transmit.sv:4]
+	Parameter INPUT_CLOCK_FREQ bound to: 100000000 - type: integer 
+	Parameter BAUD_RATE bound to: 115200 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/UART_transmit.sv:41]
+INFO: [Synth 8-6155] done synthesizing module 'UART_transmit' (0#1) [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/UART_transmit.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'UART_receive' [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/UART_receive.sv:4]
+	Parameter INPUT_CLOCK_FREQ bound to: 100000000 - type: integer 
+	Parameter BAUD_RATE bound to: 115200 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/UART_receive.sv:43]
+INFO: [Synth 8-6155] done synthesizing module 'UART_receive' (0#1) [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/UART_receive.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'xilinx_true_dual_port_read_first_2_clock_ram' [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/xilinx_true_dual_port_read_first_2_clock_ram.v:10]
+	Parameter RAM_WIDTH bound to: 8 - type: integer 
+	Parameter RAM_DEPTH bound to: 40000 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xilinx_true_dual_port_read_first_2_clock_ram' (0#1) [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/xilinx_true_dual_port_read_first_2_clock_ram.v:10]
+ERROR: [Synth 8-524] part-select [16:0] out of range of prefix 'led' [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/top_level.sv:256]
+ERROR: [Synth 8-6156] failed synthesizing module 'top_level' [/home/maxwellmorris/repos/Tommy_FPGA/MIT_6.205/Week3/top_level/hdl/top_level.sv:3]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2162.000 ; gain = 510.680 ; free physical = 861 ; free virtual = 36854
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2223.551 ; gain = 571.680 ; free physical = 4693 ; free virtual = 39609
 ---------------------------------------------------------------------------------
 RTL Elaboration failed
 INFO: [Common 17-83] Releasing license: Synthesis
-8 Infos, 0 Warnings, 0 Critical Warnings and 3 Errors encountered.
+19 Infos, 0 Warnings, 0 Critical Warnings and 3 Errors encountered.
 synth_design failed
 ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
-INFO: [Common 17-206] Exiting Vivado at Fri Jun 19 13:14:13 2026...
+INFO: [Common 17-206] Exiting Vivado at Sat Jun 20 18:07:26 2026...

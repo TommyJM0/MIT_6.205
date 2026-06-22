@@ -1,6 +1,6 @@
 -------------------------------------
 | Tool Version : Vivado v.2025.1
-| Date         : Fri Jun 19 14:02:19 2026
+| Date         : Sat Jun 20 19:01:21 2026
 | Host         : debian12machine
 | Design       : design_1
 | Device       : xc7s50-csga324-1--

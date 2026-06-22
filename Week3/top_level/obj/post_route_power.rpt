@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2025.1 (lin64) Build 6140274 Wed May 21 22:58:25 MDT 2025
-| Date             : Fri Jun 19 14:02:36 2026
+| Date             : Sat Jun 20 19:01:39 2026
 | Host             : debian12machine running 64-bit Debian GNU/Linux 12 (bookworm)
 | Command          : report_power -file obj/post_route_power.rpt
 | Design           : top_level
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 5.086        |
+| Total On-Chip Power (W)  | 8.296        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 4.996        |
-| Device Static (W)        | 0.090        |
+| Dynamic (W)              | 8.177        |
+| Device Static (W)        | 0.118        |
 | Effective TJA (C/W)      | 4.9          |
-| Max Ambient (C)          | 59.9         |
-| Junction Temperature (C) | 50.1         |
+| Max Ambient (C)          | 44.0         |
+| Junction Temperature (C) | 66.0         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,16 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.515 |      565 |       --- |             --- |
-|   LUT as Logic |     0.405 |      169 |     32600 |            0.52 |
-|   CARRY4       |     0.069 |       50 |      8150 |            0.61 |
-|   Register     |     0.035 |      285 |     65200 |            0.44 |
-|   BUFG         |     0.006 |        2 |        32 |            6.25 |
-|   Others       |     0.000 |       13 |       --- |             --- |
-| Signals        |     0.573 |      527 |       --- |             --- |
-| I/O            |     3.909 |       39 |       210 |           18.57 |
-| Static Power   |     0.090 |          |           |                 |
-| Total          |     5.086 |          |           |                 |
+| Slice Logic    |     0.514 |      834 |       --- |             --- |
+|   LUT as Logic |     0.388 |      263 |     32600 |            0.81 |
+|   CARRY4       |     0.084 |       66 |      8150 |            0.81 |
+|   Register     |     0.035 |      419 |     65200 |            0.64 |
+|   BUFG         |     0.007 |        3 |        32 |            9.38 |
+|   Others       |     0.000 |       23 |       --- |             --- |
+| Signals        |     0.610 |      817 |       --- |             --- |
+| Block RAM      |     2.912 |       16 |        75 |           21.33 |
+| I/O            |     4.141 |       39 |       210 |           18.57 |
+| Static Power   |     0.118 |          |           |                 |
+| Total          |     8.296 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,16 +72,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     1.129 |       1.104 |      0.025 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.157 |       0.143 |      0.014 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     1.103 |       1.102 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     3.856 |       3.808 |      0.047 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.168 |       0.151 |      0.017 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     1.169 |       1.168 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.246 |       0.244 |      0.002 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 
@@ -136,12 +137,16 @@ Table of Contents
 +------------------------+-----------+
 | Name                   | Power (W) |
 +------------------------+-----------+
-| top_level              |     4.996 |
-|   audio                |     0.203 |
-|     mc                 |     0.202 |
-|   counter_8khz_trigger |     0.161 |
-|   my_spi_con           |     0.270 |
-|   uart_tx              |     0.412 |
+| top_level              |     8.177 |
+|   audio                |     0.212 |
+|     mc                 |     0.211 |
+|   audio_bram           |     2.993 |
+|   counter_8khz_trigger |     0.174 |
+|   evt_counterA         |     0.008 |
+|   evt_counterB         |     0.007 |
+|   my_spi_con           |     0.261 |
+|   uart_rx              |     0.019 |
+|   uart_tx              |     0.272 |
 +------------------------+-----------+
 
 

@@ -115,21 +115,10 @@ module top_level
 
     // for checkoff 1: pass-through the audio sample we captured from SPI!
     // also, make the value much much smaller so that we don't kill our ears :)
-    assign line_out_audio = audio_sample >> 1;
-    logic                      spk_out;
+    
     
     // TODO: instantiate a pwm module to drive spk_out based on the
     // set both output channels equal to the same PWM signal!
-sys_rst        <= sys_rst_sync_0;
-    pwm audio(
-        .clk(clk_100mhz),
-        .rst(sys_rst),
-        .dc_in(line_out_audio),
-        .sig_out(spk_out)
-    );
-
-    assign spkl = spk_out;
-    assign spkr = spk_out;
 
     // Data Buffer SPI-UART
     // TODO: write some sequential logic to keep track of whether the
@@ -205,7 +194,7 @@ sys_rst        <= sys_rst_sync_0;
     logic [7:0] uart_rx_data;
 
     UART_receive #(
-        .INPUT_CLOCK_FREQ(100_000_000)
+        .INPUT_CLOCK_FREQ(100_000_000),
         .BAUD_RATE(115200)
     )uart_rx
     (
@@ -214,7 +203,7 @@ sys_rst        <= sys_rst_sync_0;
         .din(uart_rx_buf1),
         .dout_valid(uart_rx_valid),
         .dout(uart_rx_data)
-    )
+    );
     
 
     // BRAM Memory
@@ -250,7 +239,7 @@ sys_rst        <= sys_rst_sync_0;
         .douta(douta),
         // PORT B:
         .addrb(addrb),
-        .dinb(dinb),
+        .dinb(uart_rx_data),
         .clkb(clk_100mhz),
         .web(1'b1), // write always
         .enb(1'b1),
@@ -263,6 +252,8 @@ sys_rst        <= sys_rst_sync_0;
     // Memory addressing
     // TODO: instantiate an event counter that increments once every 8000th of a second
     // for addressing the (port A) data we want to send out to LINE OUT!
+
+    assign led[15:0] = addrb;
 
     evt_counter #(
         .MAX_COUNT(BRAM_DEPTH)
@@ -289,6 +280,21 @@ sys_rst        <= sys_rst_sync_0;
         .evt(uart_rx_valid),
         .count(addrb)
     );
+
+    assign line_out_audio = douta;
+    logic                      spk_out;
+
+     pwm audio(
+        .clk(clk_100mhz),
+        .rst(sys_rst),
+        .dc_in(line_out_audio),
+        .sig_out(spk_out)
+    );
+
+    assign spkl = spk_out;
+    assign spkr = spk_out;
+
+
 
 endmodule // top_level
 

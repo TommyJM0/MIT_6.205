@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1781666761" />
-    <testcase name="test_a" classname="test_spi_con" file="/Users/daddyboi/Desktop/MIT_6.205/Week2/sim/test_spi_con.py" lineno="48" time="0.023140907287597656" sim_time_ns="4650.001" ratio_time="200942.89917889965" />
+    <property name="random_seed" value="1782274767" />
+    <testcase name="test_a" classname="test_evt_counter" file="/Users/daddyboi/Desktop/MIT_6.205/Week2/sim/test_evt_counter.py" lineno="13" time="0.002862215042114258" sim_time_ns="320.0" ratio_time="111801.52269887547" />
   </testsuite>
 </testsuites>

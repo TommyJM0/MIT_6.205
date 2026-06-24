@@ -38,6 +38,7 @@ module UART_receive
     always_comb begin
       if(rst) begin
         next = IDLE;
+        dout = 0;
       end
       else begin
         case (state)
@@ -57,7 +58,7 @@ module UART_receive
             end
 
             dout_valid = 0;
-            dout = 0;
+//            dout = 0;
           end
 
           START : begin
@@ -78,7 +79,7 @@ module UART_receive
             end
 
             dout_valid = 0;
-            dout = 0;
+//            dout = 0;
           end
           
           DATA : begin
@@ -103,7 +104,7 @@ module UART_receive
 
             
             dout_valid = 0;
-            dout = 0;
+//            dout = 0;
           end
         
           STOP: begin

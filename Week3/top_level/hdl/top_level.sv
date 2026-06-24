@@ -146,7 +146,7 @@ module top_level
             uart_data_in         <= 8'h00;
         end else begin
             // Set flag when new SPI data arrives and switch 0 is active
-            if (spi_read_data_valid && sw[0]) begin
+            if (uart_data_valid) begin
                 audio_sample_waiting <= 1'b1;
                 uart_data_in         <= spi_read_data[9:2]; // Lock in sample immediately
             end
@@ -205,6 +205,17 @@ module top_level
         .dout(uart_rx_data)
     );
     
+    logic write_valid;
+    
+    always_ff @(posedge clk_100mhz) begin
+        
+        if(uart_rx_valid) begin
+            write_valid <= 1;
+        end
+        else begin
+            write_valid <= 0;
+        end
+    end  
 
     // BRAM Memory
     // We've configured this for you, but you'll need to hook up your address and data ports to the rest of your logic!
@@ -221,7 +232,6 @@ module top_level
     // only using port b for writes: we only use din
     logic [BRAM_WIDTH-1:0]     dinb;
     logic [ADDR_WIDTH-1:0]     addrb;
-
     
 
     xilinx_true_dual_port_read_first_2_clock_ram
@@ -241,7 +251,7 @@ module top_level
         .addrb(addrb),
         .dinb(uart_rx_data),
         .clkb(clk_100mhz),
-        .web(1'b1), // write always
+        .web(write_valid), // write always
         .enb(1'b1),
         .rstb(sys_rst),
         .regceb(1'b1),
